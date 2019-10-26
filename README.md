@@ -73,7 +73,7 @@ This noise. This shouldn't be there. But it is. And as far as I know, it is for 
 On a SNES pad, the MCU (Arduino) drives the clock line. So we just use pretty much any frequency we see fit. But here, it's the Gamepad that controls the clock. So the Arduino has to be fast enough to catch and process every single clock pulse of the gamepad. Even though it ticks at around 100 KHz and the UNO is 16 MHz, the interrupt routine really has no time to lose. Even simple instructions like ```digitalRead()``` are too slow! I've been able to optimize enough in C but anything further would have required assembly language.
 
 ## Trigger frequency
-The Gamepad can work a trigger signal at 1 Hz and it'd be fine, but going faster than 1 KHz makes it unstable: it seems to work fine but as soon as a button is pressed, the clock doesn't tick for all buttons and sometimes it just does not work at all.
+You could feed the Gamepad with a trigger signal rate as low as 1 Hz (or trigger it only once) and it'd be fine, but going faster than 1 KHz makes it unstable: it seems to work fine but as soon as a button is pressed, the clock doesn't tick for all buttons and sometimes it just does not work at all.
 
 # Final thoughts
 I wouldn't have thought such a good gamepad had such an horrible interface. But that's just my opinion. There are far worst things in electronics. I learned a lot and at least, I still get to use the same controllers I've had for 20 years ;)
