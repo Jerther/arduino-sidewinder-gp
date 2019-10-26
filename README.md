@@ -48,7 +48,7 @@ And indeed it is. But after many hours trying to make sense of all this, I reali
 ## The data lines
 I first stumbled on [MaZderMind's repository for a similar project](https://github.com/MaZderMind/SidewinderInterface). Although I couldn't make any part of his code work with my Gamepad, his documentation was fairly useful. There seems to be some problem on the clock and data lines when the trigger line is toggled. Let's take a look at a single packet (all lines are 'active low'):
 
-![Single packet](doc/ss1.jpg)
+![Single packet](doc/ss1.png)
 
 In theory, here's how it's supposed to work:
 
@@ -59,15 +59,15 @@ In theory, here's how it's supposed to work:
 
 The picture above sure looks like this right? Well, let's look at this part marked in red:
 
-![Single packet](doc/ss2.jpg)
+![Single packet](doc/ss2.png)
 
 This is where the clock and data lines reset. Now let's zoom in:
 
-![Lines reset](doc/ss3.jpg)
+![Lines reset](doc/ss3.png)
 
 This noise. This shouldn't be there. But it is. And as far as I know, it is for all Sidewinder products. And if not filtered out, it triggers the MCU interrupt, but it's so fast sometimes it doesn't. So what do we do? It depends on how you see it. It looks like as soon as the trigger is activated, the clock and data lines take around 227 microseconds to stabilize so I just wait 250 before I deactivate the trigger, don't listen to the clock line until after the delay and be done with it. It feels SO dirty but so is this garbage.
 
-![wait](doc/ss4.jpg)
+![wait](doc/ss4.png)
 
 ## The clock
 On a SNES pad, the MCU (Arduino) drives the clock line. So we just use pretty much any frequency we see fit. But here, it's the Gamepad that controls the clock. So the Arduino has to be fast enough to catch and process every single clock pulse of the gamepad. Even though it ticks at around 100 KHz and the UNO is 16 MHz, the interrupt routine really has no time to lose. Even simple instructions like ```digitalRead()``` are too slow! I've been able to optimize enough in C but anything further would have required assembly language.
