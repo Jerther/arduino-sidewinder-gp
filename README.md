@@ -1,6 +1,8 @@
 # About
 This project aims to interpret signals sent by a Sidewinder Gamepad using an Arduino Uno. A Linux keyboard mapper written in Python 3 is provided as an example.
 
+![Project](doc/proj.jpg)
+
 # How to use
 ### Requirements
 - A Arduino Uno*
