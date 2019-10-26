@@ -33,7 +33,7 @@ Now, edit the Python 3 program called serial_to_kb.py. Change the serial port to
 Be aware that the serial data transmission in the Arduino and the serial data interpretation in the Python program were made as a proof of concept and are really not optimized. Therefore, some of you hardcore gamers might feel some input lag. You're welcome to chime in and contribute to improve that though ;)
 
 ### Troubleshooting
-**I get no data!**
+**I get no data! or I get a bunch of garbage!**
 
 Tooggle the mode button off and on again. IIRC, the official manual stated that too ;)
 
